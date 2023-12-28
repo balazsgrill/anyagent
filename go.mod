@@ -4,13 +4,9 @@ go 1.21
 
 toolchain go1.21.0
 
-require github.com/anyproto/anytype-heart v0.30.3
+require github.com/anyproto/anytype-heart v0.30.4
 
-require (
-	github.com/anyproto/any-sync v0.3.8
-	github.com/libp2p/zeroconf/v2 v2.2.0
-
-)
+require github.com/anyproto/any-sync v0.3.8
 
 require (
 	filippo.io/edwards25519 v1.0.0 // indirect
@@ -131,6 +127,7 @@ require (
 	github.com/klauspost/cpuid/v2 v2.2.5 // indirect
 	github.com/libp2p/go-buffer-pool v0.1.0 // indirect
 	github.com/libp2p/go-libp2p v0.32.1 // indirect
+	github.com/libp2p/zeroconf/v2 v2.2.0 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
