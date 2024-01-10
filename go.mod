@@ -6,7 +6,14 @@ toolchain go1.21.0
 
 require github.com/anyproto/anytype-heart v0.30.4
 
-require github.com/anyproto/any-sync v0.3.8
+require github.com/balazsgrill/oauthenticator v0.0.0
+
+require github.com/balazsgrill/extractld v0.0.0
+
+require (
+	github.com/anyproto/any-sync v0.3.8
+	github.com/gogo/protobuf v1.3.2
+)
 
 require (
 	filippo.io/edwards25519 v1.0.0 // indirect
@@ -22,6 +29,7 @@ require (
 	github.com/anyproto/go-slip10 v1.0.0 // indirect
 	github.com/anyproto/go-slip21 v1.0.0 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
+	github.com/balazsgrill/sparqlupdate v0.0.0-20230108043446-cb1acac570f1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bits-and-blooms/bitset v1.2.0 // indirect
 	github.com/blevesearch/bleve/v2 v2.3.10 // indirect
@@ -75,7 +83,6 @@ require (
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/goccy/go-graphviz v0.1.1 // indirect
 	github.com/gogo/googleapis v1.3.1 // indirect
-	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/gogo/status v1.1.1 // indirect
 	github.com/gogs/chardet v0.0.0-20211120154057-b7413eaefb8f // indirect
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
@@ -125,6 +132,7 @@ require (
 	github.com/kelseyhightower/envconfig v1.4.0 // indirect
 	github.com/klauspost/compress v1.17.2 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.5 // indirect
+	github.com/knakk/rdf v0.0.0-20190304171630-8521bf4c5042 // indirect
 	github.com/libp2p/go-buffer-pool v0.1.0 // indirect
 	github.com/libp2p/go-libp2p v0.32.1 // indirect
 	github.com/libp2p/zeroconf/v2 v2.2.0 // indirect
@@ -231,3 +239,7 @@ replace github.com/araddon/dateparse => github.com/mehanizm/dateparse v0.0.0-202
 replace github.com/multiformats/go-multiaddr => github.com/anyproto/go-multiaddr v0.8.1-0.20221213144344-0b6b93adaec4
 
 replace github.com/gogo/protobuf => github.com/anyproto/protobuf v1.3.3-0.20230114170705-8e2cb769640b
+
+replace github.com/balazsgrill/oauthenticator => ../oauthenticator
+
+replace github.com/balazsgrill/extractld => ../extractld

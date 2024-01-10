@@ -20,6 +20,9 @@ import (
 	"github.com/anyproto/anytype-heart/space"
 	"github.com/anyproto/anytype-heart/util/pbtypes"
 	"github.com/gogo/protobuf/types"
+
+	_ "github.com/balazsgrill/extractld"
+	_ "github.com/balazsgrill/oauthenticator"
 )
 
 func main() {
