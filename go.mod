@@ -4,19 +4,19 @@ go 1.21
 
 toolchain go1.21.0
 
-require github.com/anyproto/anytype-heart v0.30.4
+require github.com/anyproto/anytype-heart v0.30.5
 
 require github.com/balazsgrill/oauthenticator v0.0.0
 
 require github.com/balazsgrill/extractld v0.0.0
 
 require (
-	github.com/anyproto/any-sync v0.3.8
+	github.com/anyproto/any-sync v0.3.17
 	github.com/gogo/protobuf v1.3.2
 )
 
 require (
-	filippo.io/edwards25519 v1.0.0 // indirect
+	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/JohannesKaufmann/html-to-markdown v1.4.0 // indirect
 	github.com/PuerkitoBio/goquery v1.8.1 // indirect
 	github.com/RoaringBitmap/roaring v1.2.3 // indirect
@@ -48,6 +48,8 @@ require (
 	github.com/blevesearch/zapx/v13 v13.3.10 // indirect
 	github.com/blevesearch/zapx/v14 v14.3.10 // indirect
 	github.com/blevesearch/zapx/v15 v15.3.13 // indirect
+	github.com/btcsuite/btcd v0.21.0-beta // indirect
+	github.com/btcsuite/btcutil v1.0.3-0.20201208143702-a53e38424cce // indirect
 	github.com/cespare/xxhash v1.1.0 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/chai2010/webp v1.1.1 // indirect
@@ -69,6 +71,7 @@ require (
 	github.com/dsoprea/go-photoshop-info-format v0.0.0-20200609050348-3db9b63b202c // indirect
 	github.com/dsoprea/go-utility/v2 v2.0.0-20221003172846-a3e1774ef349 // indirect
 	github.com/dustin/go-humanize v1.0.0 // indirect
+	github.com/ethereum/go-ethereum v1.10.4 // indirect
 	github.com/fogleman/gg v1.3.0 // indirect
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8 // indirect
 	github.com/go-chi/chi/v5 v5.0.10 // indirect
@@ -81,7 +84,7 @@ require (
 	github.com/go-task/slim-sprig v0.0.0-20230315185526-52ccab3ef572 // indirect
 	github.com/go-xmlfmt/xmlfmt v0.0.0-20191208150333-d5b6f63a941b // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
-	github.com/goccy/go-graphviz v0.1.1 // indirect
+	github.com/goccy/go-graphviz v0.1.2 // indirect
 	github.com/gogo/googleapis v1.3.1 // indirect
 	github.com/gogo/status v1.1.1 // indirect
 	github.com/gogs/chardet v0.0.0-20211120154057-b7413eaefb8f // indirect
@@ -95,7 +98,7 @@ require (
 	github.com/google/flatbuffers v1.12.1 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/pprof v0.0.0-20231023181126-ff6d637d2a7b // indirect
-	github.com/google/uuid v1.4.0 // indirect
+	github.com/google/uuid v1.5.0 // indirect
 	github.com/gorilla/css v1.0.0 // indirect
 	github.com/gosimple/slug v1.13.1 // indirect
 	github.com/gosimple/unidecode v1.0.1 // indirect
@@ -142,6 +145,7 @@ require (
 	github.com/mb0/diff v0.0.0-20131118162322-d8d9a906c24d // indirect
 	github.com/microcosm-cc/bluemonday v1.0.25 // indirect
 	github.com/miekg/dns v1.1.56 // indirect
+	github.com/miguelmota/go-ethereum-hdwallet v0.1.1 // indirect
 	github.com/minio/sha256-simd v1.0.1 // indirect
 	github.com/miolini/datacounter v1.0.3 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
@@ -196,10 +200,10 @@ require (
 	go.opentelemetry.io/otel v1.14.0 // indirect
 	go.opentelemetry.io/otel/trace v1.14.0 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
-	go.uber.org/mock v0.3.0 // indirect
+	go.uber.org/mock v0.4.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect
-	golang.org/x/crypto v0.16.0 // indirect
+	golang.org/x/crypto v0.17.0 // indirect
 	golang.org/x/exp v0.0.0-20231006140011-7918f672742d // indirect
 	golang.org/x/image v0.14.0 // indirect
 	golang.org/x/mod v0.13.0 // indirect
@@ -209,9 +213,9 @@ require (
 	golang.org/x/sys v0.15.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/tools v0.14.0 // indirect
-	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20230822172742-b8732ec3820d // indirect
-	google.golang.org/grpc v1.59.0 // indirect
+	google.golang.org/appengine v1.6.8 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20231002182017-d307bd883b97 // indirect
+	google.golang.org/grpc v1.60.1 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/Graylog2/go-gelf.v2 v2.0.0-20180125164251-1832d8546a9f // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
