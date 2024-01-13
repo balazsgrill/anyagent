@@ -1,4 +1,4 @@
-module github.com/balazsgrill/anytype-hack
+module github.com/balazsgrill/anyagent
 
 go 1.21
 
@@ -13,6 +13,7 @@ require github.com/balazsgrill/extractld v0.0.0
 require (
 	github.com/anyproto/any-sync v0.3.8
 	github.com/gogo/protobuf v1.3.2
+	github.com/google/uuid v1.4.0
 )
 
 require (
@@ -29,6 +30,7 @@ require (
 	github.com/anyproto/go-slip10 v1.0.0 // indirect
 	github.com/anyproto/go-slip21 v1.0.0 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
+	github.com/balazsgrill/basecamp3 v0.0.0-20230108173528-44f824ab5128 // indirect
 	github.com/balazsgrill/sparqlupdate v0.0.0-20230108043446-cb1acac570f1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bits-and-blooms/bitset v1.2.0 // indirect
@@ -95,7 +97,6 @@ require (
 	github.com/google/flatbuffers v1.12.1 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/pprof v0.0.0-20231023181126-ff6d637d2a7b // indirect
-	github.com/google/uuid v1.4.0 // indirect
 	github.com/gorilla/css v1.0.0 // indirect
 	github.com/gosimple/slug v1.13.1 // indirect
 	github.com/gosimple/unidecode v1.0.1 // indirect
@@ -132,12 +133,15 @@ require (
 	github.com/kelseyhightower/envconfig v1.4.0 // indirect
 	github.com/klauspost/compress v1.17.2 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.5 // indirect
+	github.com/knakk/digest v0.0.0-20160404164910-fd45becddc49 // indirect
 	github.com/knakk/rdf v0.0.0-20190304171630-8521bf4c5042 // indirect
+	github.com/knakk/sparql v0.0.0-20220326141742-15797a7da0ca // indirect
 	github.com/libp2p/go-buffer-pool v0.1.0 // indirect
 	github.com/libp2p/go-libp2p v0.32.1 // indirect
 	github.com/libp2p/zeroconf/v2 v2.2.0 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/mb0/diff v0.0.0-20131118162322-d8d9a906c24d // indirect
 	github.com/microcosm-cc/bluemonday v1.0.25 // indirect
@@ -156,6 +160,7 @@ require (
 	github.com/multiformats/go-multihash v0.2.3 // indirect
 	github.com/multiformats/go-multistream v0.5.0 // indirect
 	github.com/multiformats/go-varint v0.0.7 // indirect
+	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/onsi/ginkgo/v2 v2.13.0 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/otiai10/copy v1.14.0 // indirect
@@ -178,6 +183,7 @@ require (
 	github.com/shoenig/go-m1cpu v0.1.6 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
+	github.com/ssor/bom v0.0.0-20170718123548-6386211fdfcf // indirect
 	github.com/stretchr/objx v0.5.0 // indirect
 	github.com/stretchr/testify v1.8.4 // indirect
 	github.com/tklauser/go-sysconf v0.3.12 // indirect
@@ -216,6 +222,7 @@ require (
 	gopkg.in/Graylog2/go-gelf.v2 v2.0.0-20180125164251-1832d8546a9f // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
+	jaytaylor.com/html2text v0.0.0-20211105163654-bc68cce691ba // indirect
 	lukechampine.com/blake3 v1.2.1 // indirect
 	storj.io/drpc v0.0.33 // indirect
 )
@@ -241,5 +248,9 @@ replace github.com/multiformats/go-multiaddr => github.com/anyproto/go-multiaddr
 replace github.com/gogo/protobuf => github.com/anyproto/protobuf v1.3.3-0.20230114170705-8e2cb769640b
 
 replace github.com/balazsgrill/oauthenticator => ../oauthenticator
+
+replace github.com/balazsgrill/basecamp3 => ../basecamp3
+
+replace github.com/balazsgrill/sparqlupdate => ../sparqlupdate
 
 replace github.com/balazsgrill/extractld => ../extractld

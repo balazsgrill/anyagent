@@ -7,21 +7,12 @@ import (
 
 	"github.com/anyproto/any-sync/app"
 	"github.com/anyproto/anytype-heart/core/application"
-	"github.com/anyproto/anytype-heart/core/block"
 	bimport "github.com/anyproto/anytype-heart/core/block/import"
-	"github.com/anyproto/anytype-heart/core/block/object/objectcreator"
 	"github.com/anyproto/anytype-heart/core/block/process"
-	"github.com/anyproto/anytype-heart/core/block/simple/text"
 	"github.com/anyproto/anytype-heart/core/event"
 	"github.com/anyproto/anytype-heart/pb"
-	"github.com/anyproto/anytype-heart/pkg/lib/bundle"
-	"github.com/anyproto/anytype-heart/pkg/lib/database"
-	"github.com/anyproto/anytype-heart/pkg/lib/localstore/objectstore"
 	"github.com/anyproto/anytype-heart/pkg/lib/pb/model"
 	"github.com/anyproto/anytype-heart/space"
-	"github.com/anyproto/anytype-heart/util/pbtypes"
-	"github.com/balazsgrill/extractld"
-	"github.com/gogo/protobuf/types"
 )
 
 type AgentConfig struct {
@@ -36,12 +27,9 @@ type agent struct {
 	idle     *idledetector
 	instance *application.Service
 
-	spaceService         space.Service
-	personalSpace        space.Space
-	objectStoreService   objectstore.ObjectStore
-	objectCreatorService objectcreator.Service
-	blockService         *block.Service
-	importer             bimport.Importer
+	spaceService  space.Service
+	personalSpace space.Space
+	importer      bimport.Importer
 }
 
 func New(config AgentConfig) *agent {
@@ -57,41 +45,11 @@ func (a *agent) Init() {
 	a.instance = application.New()
 }
 
-func (a *agent) getOrCreate(source string) (string, bool, error) {
-	result, _, err := a.objectStoreService.QueryObjectIDs(database.Query{
-		Filters: []*model.BlockContentDataviewFilter{
-			{
-				RelationKey: bundle.RelationKeySource.String(),
-				Condition:   model.BlockContentDataviewFilter_Equal,
-				Value:       pbtypes.String(source),
-			},
-		},
-	})
-	if err != nil {
-		return "", false, err
-	}
-	if len(result) == 0 {
-		// Create
-		id, _, err := a.objectCreatorService.CreateObject(context.Background(), a.personalSpace.Id(), objectcreator.CreateObjectRequest{
-			ObjectTypeKey: bundle.TypeKeyNote,
-			Details: &types.Struct{
-				Fields: map[string]*types.Value{
-					bundle.RelationKeyDescription.String(): pbtypes.String(source),
-					text.DetailsKeyFieldName:               pbtypes.String(""),
-				},
-			},
-		})
-		return id, true, err
-	} else {
-		return result[0], false, nil
-	}
-}
-
 func (a *agent) Stop() {
 	a.instance.Stop()
 }
 
-func (a *agent) mailToBlock(email extractld.Mail) error {
+func (a *agent) ImportSnapshots(snapshots []*pb.RpcObjectImportRequestSnapshot) error {
 	_, _, err := a.importer.Import(context.Background(), &pb.RpcObjectImportRequest{
 		SpaceId:               a.personalSpace.Id(),
 		UpdateExistingObjects: true,
@@ -100,9 +58,7 @@ func (a *agent) mailToBlock(email extractld.Mail) error {
 		NoProgress:            true,
 		IsMigration:           false,
 		IsNewSpace:            false,
-		Snapshots: []*pb.RpcObjectImportRequestSnapshot{
-			&pb.RpcObjectImportRequestSnapshot{},
-		},
+		Snapshots:             snapshots,
 	}, model.ObjectOrigin_none, process.NewNoOp())
 	return err
 }
@@ -145,10 +101,6 @@ func (a *agent) Start() {
 	a.spaceService = app.MustComponent[space.Service](a.instance.GetApp())
 	a.personalSpace, _ = a.spaceService.GetPersonalSpace(context.Background())
 
-	a.objectStoreService = app.MustComponent[objectstore.ObjectStore](a.instance.GetApp())
-
-	a.blockService = app.MustComponent[*block.Service](a.instance.GetApp())
-	a.objectCreatorService = app.MustComponent[objectcreator.Service](a.instance.GetApp())
-
 	a.importer = app.MustComponent[bimport.Importer](a.instance.GetApp())
+
 }
