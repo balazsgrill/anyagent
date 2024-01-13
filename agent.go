@@ -11,8 +11,13 @@ import (
 	"github.com/anyproto/anytype-heart/core/block/process"
 	"github.com/anyproto/anytype-heart/core/event"
 	"github.com/anyproto/anytype-heart/pb"
+	"github.com/anyproto/anytype-heart/pkg/lib/bundle"
+	"github.com/anyproto/anytype-heart/pkg/lib/database"
+	"github.com/anyproto/anytype-heart/pkg/lib/localstore/objectstore"
 	"github.com/anyproto/anytype-heart/pkg/lib/pb/model"
 	"github.com/anyproto/anytype-heart/space"
+	"github.com/anyproto/anytype-heart/space/clientspace"
+	"github.com/anyproto/anytype-heart/util/pbtypes"
 )
 
 type AgentConfig struct {
@@ -27,9 +32,10 @@ type agent struct {
 	idle     *idledetector
 	instance *application.Service
 
-	spaceService  space.Service
-	personalSpace space.Space
-	importer      bimport.Importer
+	spaceService       space.Service
+	personalSpace      clientspace.Space
+	importer           bimport.Importer
+	objectstoreservice objectstore.ObjectStore
 }
 
 func New(config AgentConfig) *agent {
@@ -61,6 +67,19 @@ func (a *agent) ImportSnapshots(snapshots []*pb.RpcObjectImportRequestSnapshot) 
 		Snapshots:             snapshots,
 	}, model.ObjectOrigin_none, process.NewNoOp())
 	return err
+}
+
+func (a *agent) IsObjectExistBySource(source string) bool {
+	records, total, _ := a.objectstoreservice.Query(database.Query{
+		Filters: []*model.BlockContentDataviewFilter{
+			{
+				RelationKey: bundle.RelationKeySource.String(),
+				Condition:   model.BlockContentDataviewFilter_Equal,
+				Value:       pbtypes.String(source),
+			},
+		},
+	})
+	return total > 0 || len(records) > 0
 }
 
 func (a *agent) Start() {
@@ -102,5 +121,5 @@ func (a *agent) Start() {
 	a.personalSpace, _ = a.spaceService.GetPersonalSpace(context.Background())
 
 	a.importer = app.MustComponent[bimport.Importer](a.instance.GetApp())
-
+	a.objectstoreservice = app.MustComponent[objectstore.ObjectStore](a.instance.GetApp())
 }

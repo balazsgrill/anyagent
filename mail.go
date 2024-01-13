@@ -37,14 +37,14 @@ func MailSnapshot(email extractld.Mail) (*pb.RpcObjectImportRequestSnapshot, err
 	}, nil
 }
 
-func GetMail(provider extractld.MailProvider, start time.Time, end time.Time) ([]*pb.RpcObjectImportRequestSnapshot, error) {
+func GetMail(provider extractld.MailProvider, filter func(extractld.Mail) bool, start time.Time, end time.Time) ([]*pb.RpcObjectImportRequestSnapshot, error) {
 	mails, err := provider.MailByDate(start, end)
 	if err != nil {
 		return nil, err
 	}
 	result := make([]*pb.RpcObjectImportRequestSnapshot, 0, len(mails))
 	for _, mail := range mails {
-		if mail.IsFlagged() {
+		if filter(mail) {
 			ss, err := MailSnapshot(mail)
 			if err != nil {
 				log.Println(err)
@@ -58,15 +58,14 @@ func GetMail(provider extractld.MailProvider, start time.Time, end time.Time) ([
 
 type MailProcessor struct {
 	extractld.MailProvider
-	lastTime time.Time
+	sourcefilter func(extractld.Mail) bool
 }
 
 func (mp *MailProcessor) Do(now time.Time) []*pb.RpcObjectImportRequestSnapshot {
-	mail, err := GetMail(mp.MailProvider, mp.lastTime, now)
+	// Two weeks
+	mail, err := GetMail(mp.MailProvider, mp.sourcefilter, now.Add(-14*24*time.Hour), now)
 	if err != nil {
-		// Retry next time, don't progress last successful time
 		return nil
 	}
-	mp.lastTime = now
 	return mail
 }

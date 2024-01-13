@@ -68,8 +68,11 @@ func (m *Main) mailProcessor(mp extractld.MailProvider, now time.Time) *MailProc
 	if !ok {
 		p = &MailProcessor{
 			MailProvider: mp,
-			lastTime:     now.Add(-14 * 24 * time.Hour), // Two weeks
+			sourcefilter: func(mail extractld.Mail) bool {
+				return (!m.agent.IsObjectExistBySource(mail.Source())) && mail.IsFlagged()
+			},
 		}
+		m.mailprocessors[mp] = p
 	}
 	return p
 }
