@@ -2,3 +2,4 @@ data
 run.bat
 oauth/*
 .vscode/launch.json
+__debug_*
